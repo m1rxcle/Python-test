@@ -1,26 +1,45 @@
-# Задание №1
+"""# Задание №1
 
-first_side = float(input("Введите длину первой стороны: "))
-second_side = float(input("Введите длину второй стороны: "))
+user_input = int(input("Введите целое число: "))
 
-area = round(first_side * second_side, 1)
-perimeter = round((first_side + second_side) * 2, 1)
+message = ""
 
-print(
-    f"Площадь прямоугольника равна: {area}.\nПериметр прямоугольника равен: {perimeter}"
-)
+if user_input > 0 and user_input % 2 == 0:
+    message = "Положительное четное число"
+elif user_input > 0 and user_input % 2 != 0:
+    message = "Положительное нечетное число"
+elif user_input < 0 and user_input % 2 == 0:
+    message = "Отрицательное четное число"
+elif user_input < 0 and user_input % 2 != 0:
+    message = "Отрицательное нечетное число"
+else:
+    message = "Нулевое число"
+
+print(message)"""
 
 # Задание №2
 
-initian_number = 46275
+user_word = input("Введите латинское слово: ").lower()
 
-ten_thousands = initian_number // 10000
-thousands = initian_number // 1000 % 10
-hundreds = initian_number // 100 % 10
-tens = initian_number // 10 % 10
-ones = initian_number % 10
+a_count = user_word.count("a")
+e_count = user_word.count("e")
+i_count = user_word.count("i")
+o_count = user_word.count("o")
+u_count = user_word.count("u")
 
-result = (tens**ones) * hundreds / (ten_thousands - thousands)
+# Проверка на наличие всех гласных
+if a_count == 0 or e_count == 0 or i_count == 0 or o_count == 0 or u_count == 0:
+    print("False")
+else:
+    odd_letters_count = a_count + e_count + i_count + o_count + u_count
+    even_letters_count = len(user_word) - odd_letters_count
 
+    a_output = f"встречается {a_count} раз(а)"
+    e_output = f"встречается {e_count} раз(а)"
+    i_output = f"встречается {i_count} раз(а)"
+    o_output = f"встречается {o_count} раз(а)"
+    u_output = f"встречается {u_count} раз(а)"
 
-print(result)
+    result = f"Количество гласных букв: {odd_letters_count}.\nКоличество согласных букв: {even_letters_count}.\n'a' {a_output}\n'e' {e_output}\n'i' {i_output}\n'o' {o_output}\n'u' {u_output}"
+
+    print(result)
