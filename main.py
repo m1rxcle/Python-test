@@ -1,4 +1,4 @@
-"""# Задание №1
+# Задание №1
 
 user_input = int(input("Введите целое число: "))
 
@@ -15,7 +15,7 @@ elif user_input < 0 and user_input % 2 != 0:
 else:
     message = "Нулевое число"
 
-print(message)"""
+print(message)
 
 # Задание №2
 
