@@ -27,7 +27,6 @@ i_count = user_word.count("i")
 o_count = user_word.count("o")
 u_count = user_word.count("u")
 
-# Проверка на наличие всех гласных
 if a_count == 0 or e_count == 0 or i_count == 0 or o_count == 0 or u_count == 0:
     print("False")
 else:
@@ -43,3 +42,20 @@ else:
     result = f"Количество гласных букв: {odd_letters_count}.\nКоличество согласных букв: {even_letters_count}.\n'a' {a_output}\n'e' {e_output}\n'i' {i_output}\n'o' {o_output}\n'u' {u_output}"
 
     print(result)
+
+# Задание №3
+
+min_amout = int(input("Введите минимальную сумму: "))
+mike_amout = int(input("Введите сумму Майкла: "))
+ivan_amout = int(input("Введите сумму Ивана: "))
+
+if mike_amout >= min_amout and ivan_amout >= min_amout:
+    print(2)
+elif mike_amout >= min_amout:
+    print("Mike")
+elif ivan_amout >= min_amout:
+    print("Ivan")
+elif mike_amout + ivan_amout >= min_amout:
+    print(1)
+else:
+    print(0)
