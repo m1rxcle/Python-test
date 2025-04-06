@@ -1,61 +1,38 @@
 # Задание №1
 
-user_input = int(input("Введите целое число: "))
+n = int(input("Введите количество чисел: "))
 
-message = ""
+equal_to_zero = 0
 
-if user_input > 0 and user_input % 2 == 0:
-    message = "Положительное четное число"
-elif user_input > 0 and user_input % 2 != 0:
-    message = "Положительное нечетное число"
-elif user_input < 0 and user_input % 2 == 0:
-    message = "Отрицательное четное число"
-elif user_input < 0 and user_input % 2 != 0:
-    message = "Отрицательное нечетное число"
-else:
-    message = "Нулевое число"
+for i in range(n):
+    n_numbers = int(input("Введите число: "))
+    if n_numbers == 0:
+        equal_to_zero += 1
 
-print(message)
+
+print(f"Количество чисел равных нулю: {equal_to_zero}")
 
 # Задание №2
 
-user_word = input("Введите латинское слово: ").lower()
+x = int(input("Введите натуральное число: "))
 
-a_count = user_word.count("a")
-e_count = user_word.count("e")
-i_count = user_word.count("i")
-o_count = user_word.count("o")
-u_count = user_word.count("u")
+divisors_count = 0
 
-if a_count == 0 or e_count == 0 or i_count == 0 or o_count == 0 or u_count == 0:
-    print("False")
-else:
-    odd_letters_count = a_count + e_count + i_count + o_count + u_count
-    even_letters_count = len(user_word) - odd_letters_count
+for i in range(1, x + 1):
+    if x % i == 0:
+        divisors_count += 1
 
-    a_output = f"встречается {a_count} раз(а)"
-    e_output = f"встречается {e_count} раз(а)"
-    i_output = f"встречается {i_count} раз(а)"
-    o_output = f"встречается {o_count} раз(а)"
-    u_output = f"встречается {u_count} раз(а)"
-
-    result = f"Количество гласных букв: {odd_letters_count}.\nКоличество согласных букв: {even_letters_count}.\n'a' {a_output}\n'e' {e_output}\n'i' {i_output}\n'o' {o_output}\n'u' {u_output}"
-
-    print(result)
+print(f"Количество натуральных делителей: {divisors_count}")
 
 # Задание №3
 
-min_amout = int(input("Введите минимальную сумму: "))
-mike_amout = int(input("Введите сумму Майкла: "))
-ivan_amout = int(input("Введите сумму Ивана: "))
+a = int(input("Введите первое целое число: "))
+b = int(input("Введите второе целое число: "))
 
-if mike_amout >= min_amout and ivan_amout >= min_amout:
-    print(2)
-elif mike_amout >= min_amout:
-    print("Mike")
-elif ivan_amout >= min_amout:
-    print("Ivan")
-elif mike_amout + ivan_amout >= min_amout:
-    print(1)
+
+if a <= b:
+    for i in range(a, b + 1):
+        if i % 2 == 0:
+            print(i, end=" ")
 else:
-    print(0)
+    print("Второе число должно быть больше первого.")
