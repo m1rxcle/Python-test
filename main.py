@@ -1,61 +1,43 @@
 # Задание №1
+n = int(input("Введите кол-во чисел: "))
 
-n_numbers = int(input("Введите количество чисел: "))
+numbers = list(map(int, input("Введите числа через пробел: ").split()))
 
-list_of_numbers = []
+defference = set(numbers)
 
-for i in range(1, n_numbers + 1):
-    your_numbers = int(input("Введите число: "))
-    list_of_numbers.append(your_numbers)
-
-list_of_numbers.reverse()
-print(list_of_numbers)
-
+print(len(defference))
 
 # Задание №2
 
-n = int(input("Введите число: "))
+n1 = int(input("Введите кол-во чисел для первого списка: "))
+n1_list = set()
 
-numbers_list = []
-
-for i in range(1, n + 1):
-    your_values = int(input("Введите число: "))
-    numbers_list.append(your_values)
-
-
-def modified_list(list):
-    last_element = list.pop()
-    list.insert(0, last_element)
-    return list
+for i in range(n1):
+    numbers_for_n1_list = int(input("Введите числа: "))
+    n1_list.add(numbers_for_n1_list)
 
 
-result = modified_list(numbers_list)
-print(result)
+n2 = int(input("Введите кол-во чисел для второго списка: "))
+n2_list = set()
+
+for i in range(n2):
+    numbers_for_n2_list = int(input("Введите числа: "))
+    n2_list.add(numbers_for_n2_list)
+
+equals = n1_list & n2_list
+
+print(len(equals))
+
 
 # Задание №3
 
-m = int(input("Введите максимальную массу для одной лодки: "))
-n_ = int(input("Введите количество рыбаков: "))
+user_input = list(map(int, input("Введите числа через пробел: ").split()))
 
-all_fisherman_weights = []
+existed = set()
 
-
-for i in range(1, n_ + 1):
-    weight_each_fisherman = int(input(f"Введите вес {i} рыбака: "))
-    if weight_each_fisherman > m:
-        raise ValueError(f"Недопустимый вес {i} рыбака ")
-    all_fisherman_weights.append(weight_each_fisherman)
-
-all_fisherman_weights.sort()
-
-boats = 0
-i = 0
-j = n_ - 1
-
-while i <= j:
-    if all_fisherman_weights[i] + all_fisherman_weights[j] <= m:
-        i += 1
-    j -= 1
-    boats += 1
-
-print(f"Минимальное количество лодок: {boats}")
+for el in user_input:
+    if el in existed:
+        print("YES")
+    else:
+        print("NO")
+        existed.add(el)
