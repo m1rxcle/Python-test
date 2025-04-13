@@ -60,7 +60,7 @@ def read(id):
     info = pet_id[name]
 
     return print(
-        f"Это {info['Вид питомца']} по кличке \"{name}\". Возраст питомца: {info['Возраст питомца']} {get_suffix(info['Возраст питомца'])}. Имя владельца: {info['Имя владельца']}"
+        f"Это {info['Вид питомца']} по кличке \"{name}\". Возраст питомца: {info['Возраст питомца']} {get_suffix(info['Возраст питомца'])}. Имя владельца: {info['Имя владельца']}."
     )
 
 
@@ -122,7 +122,9 @@ def pets_list():
 command = ""
 
 while command != "stop":
-    command = input("Введите одну из команд(create, read, update, delete, stop): ")
+    command = input(
+        "Введите одну из команд(create, read, update, delete, stop): "
+    ).lower()
 
     if command == "create":
         create()
