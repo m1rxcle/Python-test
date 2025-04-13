@@ -1,43 +1,39 @@
 # Задание №1
-n = int(input("Введите кол-во чисел: "))
 
-numbers = list(map(int, input("Введите числа через пробел: ").split()))
+pet_name = input("Введите имя питомца: ")
 
-defference = set(numbers)
+pets = {
+    pet_name: {
+        "Вид питомца": input("Введите вид питомца: "),
+        "Возраст питомца": int(input("Введите возраст питомца(в годах): ")),
+        "Имя владельца": input("Введите имя владельца: "),
+    }
+}
 
-print(len(defference))
+name = pet_name
+type = pets[pet_name]["Вид питомца"]
+age = pets[pet_name]["Возраст питомца"]
+owner = pets[pet_name]["Имя владельца"]
+
+if age == 1:
+    right_pronouns = " год"
+elif age > 1 and age < 5:
+    right_pronouns = " года"
+elif age >= 5 and age < 21:
+    right_pronouns = " лет"
+elif age > 21:
+    right_pronouns = " года"
+
+print(
+    f"Это {type} по кличке '{name}'. Возраст питомца {age}{right_pronouns}. Имя владельца {owner}."
+)
+
 
 # Задание №2
 
-n1 = int(input("Введите кол-во чисел для первого списка: "))
-n1_list = set()
+my_dict = {}
 
-for i in range(n1):
-    numbers_for_n1_list = int(input("Введите числа: "))
-    n1_list.add(numbers_for_n1_list)
+for i in range(10, -6, -1):
+    my_dict[i] = i**i
 
-
-n2 = int(input("Введите кол-во чисел для второго списка: "))
-n2_list = set()
-
-for i in range(n2):
-    numbers_for_n2_list = int(input("Введите числа: "))
-    n2_list.add(numbers_for_n2_list)
-
-equals = n1_list & n2_list
-
-print(len(equals))
-
-
-# Задание №3
-
-user_input = list(map(int, input("Введите числа через пробел: ").split()))
-
-existed = set()
-
-for el in user_input:
-    if el in existed:
-        print("YES")
-    else:
-        print("NO")
-        existed.add(el)
+print(my_dict)
