@@ -1,5 +1,5 @@
 # Задание № 1
-class Transport:
+class Transport(object):
 
     def __init__(self, name, max_speed, mileage):
 
@@ -9,8 +9,7 @@ class Transport:
 
 
 class Autobus(Transport):
-    def __init__(self, name, max_speed, mileage):
-        super().__init__(name, max_speed, mileage)
+    pass
 
 
 reno = Autobus("Renaul Logan", 180, 12)
@@ -21,7 +20,7 @@ print(
 
 
 # Задание № 2
-class Transport:
+class Transport(object):
 
     def __init__(self, name, max_speed, mileage):
 
