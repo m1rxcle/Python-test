@@ -1,15 +1,47 @@
 # Задание № 1
+class Transport:
 
-my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    def __init__(self, name, max_speed, mileage):
 
-
-def recursive_print(l, index=0):
-    if index == len(l):
-        print("Конец списка")
-        return
-
-    print(l[index])
-    recursive_print(l, index + 1)
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
 
 
-recursive_print(my_list)
+class Autobus(Transport):
+    def __init__(self, name, max_speed, mileage):
+        super().__init__(name, max_speed, mileage)
+
+
+reno = Autobus("Renaul Logan", 180, 12)
+
+print(
+    f"Название автомобиля: {reno.name} Скорость: {reno.max_speed} Пробег: {reno.mileage}"
+)
+
+
+# Задание № 2
+class Transport:
+
+    def __init__(self, name, max_speed, mileage):
+
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
+
+    def seating_capacity(self, capacity):
+
+        return f"Вместимость одного автобуса {self.name} {capacity} пассажиров"
+
+
+class Autobus(Transport):
+    def __init__(self, name, max_speed, mileage):
+        super().__init__(name, max_speed, mileage)
+
+    def seating_capacity(self, capacity=50):
+        return super().seating_capacity(capacity)
+
+
+reno = Autobus("Renaul Logan", 180, 12)
+
+print(reno.seating_capacity())
