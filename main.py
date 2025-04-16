@@ -1,4 +1,4 @@
-"""# Задание № 1
+# Задание № 1
 
 
 class Kassa:
@@ -24,7 +24,7 @@ kassa = Kassa(10000)
 
 print(kassa.top_up(1000))
 print(kassa.count_1000())
-print(kassa.take_away(1000))"""
+print(kassa.take_away(1000))
 
 # Задание № 2
 
