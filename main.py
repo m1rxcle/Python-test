@@ -1,7 +1,7 @@
 # Задание № 1
 
 
-class Kassa:
+class Kassa(object):
     def __init__(self, amount):
         self.amount = amount
 
@@ -29,7 +29,7 @@ print(kassa.take_away(1000))
 # Задание № 2
 
 
-class Turtle:
+class Turtle(object):
     def __init__(self, x, y, s):
         self.x = x
         self.y = y
