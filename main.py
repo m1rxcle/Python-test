@@ -59,7 +59,7 @@ class Turtle(object):
         if self.s > 1:
             self.s -= 1
             return self.s
-        raise Exception("Дальше двигаться нельзя.")
+        print("Дальше двигаться нельзя.")
 
     def count_moves(self, x2, y2):
         return abs(x2 - self.x) // self.s + abs(y2 - self.y) // self.s
@@ -71,5 +71,4 @@ print(turtle.go_right())
 print(turtle.go_down())
 print(turtle.go_left())
 print(turtle.evolve())
-print(turtle.degrade())
 print(turtle.count_moves(2, 2))
