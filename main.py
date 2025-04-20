@@ -1,75 +1,73 @@
-# Задание № 1
+# 🌳 🔥 🟩 🌊 🏥 🧡 ⚡️ 🏆 🏦 ☁️ 🚁 🪣
+from map import Map
+from clouds import Clouds
+import time
+import os
+import json
+from helicopter import Helicopter as Helico
+from pynput import keyboard
+
+TICK_SLEEP = 0.05
+TREE_UPDATE = 50
+FIRE_UPDATE = 75
+CLOUD_UPDATE = 100
+
+MAP_W, MAP_H = 20, 10
+tick = 1
 
 
-class Kassa(object):
-    def __init__(self, amount):
-        self.amount = amount
+field = Map(MAP_W, MAP_H)
+clouds = Clouds(MAP_W, MAP_H)
 
-    def top_up(self, x):
-        self.amount += x
-        return self.amount
-
-    def count_1000(self):
-        return self.amount // 1000
-
-    def take_away(self, x):
-        if x > self.amount:
-            return "Недостаточно средств"
-        else:
-            self.amount -= x
-            return self.amount
+helico = Helico(MAP_W, MAP_H)
+MOVES = {"w": (-1, 0), "d": (0, 1), "s": (1, 0), "a": (0, -1)}
+# f - save , g - load
 
 
-kassa = Kassa(10000)
+def process_key(key):
+    global helico, tick, clouds, field
+    c = key.char.lower()
 
-print(kassa.top_up(1000))
-print(kassa.count_1000())
-print(kassa.take_away(1000))
-
-# Задание № 2
-
-
-class Turtle(object):
-    def __init__(self, x, y, s):
-        self.x = x
-        self.y = y
-        self.s = s
-
-    def go_up(self):
-        self.y += self.s
-        return self.y
-
-    def go_down(self):
-        self.y -= self.s
-        return self.y
-
-    def go_right(self):
-        self.x += self.s
-        return self.x
-
-    def go_left(self):
-        self.x -= self.s
-        return self.x
-
-    def evolve(self):
-        self.s += 1
-        return self.s
-
-    def degrade(self):
-        if self.s > 1:
-            self.s -= 1
-            return self.s
-        raise Exception("Дальше двигаться нельзя.")
-
-    def count_moves(self, x2, y2):
-        return abs(x2 - self.x) // self.s + abs(y2 - self.y) // self.s
+    # обработка движений вертолета
+    if c in MOVES.keys():
+        dx, dy = MOVES[c][0], MOVES[c][1]
+        helico.move(dx, dy)
+    # сохранение
+    elif c == "f":
+        data = {
+            "helicopter": helico.export_data(),
+            "clouds": clouds.export_data(),
+            "field": field.export_data(),
+            "tick": tick,
+        }
+        with open("level.json", "w") as lvl:
+            json.dump(data, lvl)
+    # загрузка
+    elif c == "g":
+        with open("level.json", "r") as lvl:
+            data = json.load(lvl)
+            helico.import_data(data["helicopter"])
+            tick = data["tick"]
+            clouds.import_data(data["clouds"])
+            field.import_data(data["field"])
 
 
-turtle = Turtle(0, 0, 1)
-print(turtle.go_up())
-print(turtle.go_right())
-print(turtle.go_down())
-print(turtle.go_left())
-print(turtle.evolve())
-print(turtle.degrade())
-print(turtle.count_moves(2, 2))
+listener = keyboard.Listener(on_press=None, on_release=process_key)
+listener.start()
+
+
+while True:
+    os.system("cls")
+
+    field.proccess_helicopter(helico, clouds)
+    helico.print_stats()
+    field.print_map(helico, clouds)
+    print("tick", tick)
+    tick += 1
+    time.sleep(TICK_SLEEP)
+    if tick % TREE_UPDATE == 0:
+        field.generate_tree()
+    if tick % FIRE_UPDATE == 0:
+        field.update_fires()
+    if tick % CLOUD_UPDATE == 0:
+        clouds.update()
