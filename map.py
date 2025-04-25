@@ -102,7 +102,7 @@ class Map:
                 if cell == 5:
                     self.cells[ri][ci] = 0
                     if helico.score > 0:
-                        helico.score -= 10
+                        helico.score -= 50
         for i in range(10):
             self.add_fire()
 
